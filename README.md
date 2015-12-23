@@ -1,6 +1,6 @@
 ## Front end nano degree mobile portfolio projects
 
-This project is for front-end nano-degree web development. It's github page is [here](http://songshu189.github.io/frontend-nanodegree-mobile-portfolio/views/pizza.html).
+This project is for front-end nano-degree web development. It's github page is [here](http://songshu189.github.io/frontend-nanodegree-mobile-portfolio/).
 
 ### Build instructions:
 
