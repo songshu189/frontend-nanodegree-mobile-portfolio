@@ -1,73 +1,55 @@
-## Website Performance Optimization portfolio project
+## Front end nano degree mobile portfolio projects
 
-Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
+This project is needed for front-end nano-degree web development.
 
-To get started, check out the repository, inspect the code,
+### Build instructions:
 
-### Getting started
-
-####Part 1: Optimize PageSpeed Insights score for index.html
-
-Some useful tips to help you get started:
-
-1. Check out the repository
-1. To inspect the site on your phone, you can run a local server
+1. Clone the repo
+2. Install [npm](https://github.com/npm/npm)
+3. Install [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
+4. Run **npm install** in your cloned repo folder
+5. To resize image, you need to install [ImageMagick](http://www.imagemagick.org/script/binary-releases.php)
+6. Run **gulp** to optimize the project, the production code goes to **dist** folder
+7. Test code at the **dist** folder, to inspect the site on your phone, you can run a local server
 
   ```bash
-  $> cd /path/to/your-project-folder
+  $> cd /path/to/your-project-folder/dist
   $> python -m SimpleHTTPServer 8080
   ```
 
-1. Open a browser and visit localhost:8080
-1. Download and install [ngrok](https://ngrok.com/) to make your local server accessible remotely.
+8. Open a browser and visit localhost:8080
+9. Download and install [ngrok](https://ngrok.com/) to make your local server accessible remotely. Open another window to run **ngrok**.
 
   ``` bash
-  $> cd /path/to/your-project-folder
-  $> ngrok 8080
+  $> cd /path/to/your-ngrok-folder
+  $> ngrok http 8080
   ```
 
-1. Copy the public URL ngrok gives you and try running it through PageSpeed Insights! Optional: [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
+10. Copy the public URL ngrok gives you and try running it through PageSpeed Insights!
 
-Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
+
+####Part 1: Optimize PageSpeed Insights score for index.html
+
+With the following optimization, I get PageSpeed Insights speed of 95 mobile, 96 desktop: 
+1. Add media="print" to print.css link tag
+2. Add asyn to google analytics.js script tag
+The followings are done with gulp
+3. Optimize jpg and png image with gulp-imagemin, resize and minimize views/pizzeria.jpg
+4. Replace render blocking style.css (google font css) with minified source code
+5. Minify html
+  ```
 
 ####Part 2: Optimize Frames per Second in pizza.html
 
-To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
+1. Change the number of background pizzas from 200 to 40, it's not needed for 25 lines of pizzas, I only keep 5 lines of pizza, (line 566).
+2. Add style property "willChange" with value "transform" (line 572).
+3. Add onScroll event function to call updatePositions with requestAnimationFrame (line 513).
+4. Move document.querySelectorAll('.mover') to DOMContentLoaded function after pizza background created, it's with same value every scroll (line 576).
+5. Move the phase calculation outside of the loop, and saved in a array (line 530).
+6. Change the pizza element style.left to style.transform with value translateX (line 535).
+7. Add style to movingPizza1 with values position="fixed", top="0px", left="0px", zIndex="-1" (line 561).
 
-You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
+####Part 3: Computation Efficiency pizza.html
 
-### Optimization Tips and Tricks
-* [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
-* [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
-* [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
-* [Avoiding Rendering Blocking CSS](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css.html "render blocking css")
-* [Optimizing JavaScript](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript.html "javascript")
-* [Measuring with Navigation Timing](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp.html "nav timing api"). We didn't cover the Navigation Timing API in the first two lessons but it's an incredibly useful tool for automated page profiling. I highly recommend reading.
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/eliminate-downloads.html">The fewer the downloads, the better</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer.html">Reduce the size of text</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization.html">Optimize images</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching.html">HTTP caching</a>
-
-### Customization with Bootstrap
-The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.
-
-* <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
-* <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>
-
-### Sample Portfolios
-
-Feeling uninspired by the portfolio? Here's a list of cool portfolios I found after a few minutes of Googling.
-
-* <a href="http://www.reddit.com/r/webdev/comments/280qkr/would_anybody_like_to_post_their_portfolio_site/">A great discussion about portfolios on reddit</a>
-* <a href="http://ianlunn.co.uk/">http://ianlunn.co.uk/</a>
-* <a href="http://www.adhamdannaway.com/portfolio">http://www.adhamdannaway.com/portfolio</a>
-* <a href="http://www.timboelaars.nl/">http://www.timboelaars.nl/</a>
-* <a href="http://futoryan.prosite.com/">http://futoryan.prosite.com/</a>
-* <a href="http://playonpixels.prosite.com/21591/projects">http://playonpixels.prosite.com/21591/projects</a>
-* <a href="http://colintrenter.prosite.com/">http://colintrenter.prosite.com/</a>
-* <a href="http://calebmorris.prosite.com/">http://calebmorris.prosite.com/</a>
-* <a href="http://www.cullywright.com/">http://www.cullywright.com/</a>
-* <a href="http://yourjustlucky.com/">http://yourjustlucky.com/</a>
-* <a href="http://nicoledominguez.com/portfolio/">http://nicoledominguez.com/portfolio/</a>
-* <a href="http://www.roxannecook.com/">http://www.roxannecook.com/</a>
-* <a href="http://www.84colors.com/portfolio.html">http://www.84colors.com/portfolio.html</a>
+I didn't change the logic of resizing pizza, with dev tools I found that all pizzas with same size, so I only made following changes, original file line 425-458, new file 428-465 :
+In changePizzaSizes function, move the calculation of the newwidth to the outside of the main loop, only use the width of the first pizza to determin dx. In accordingly, change the parameters of determinDx from (elem, size) to (size, oldWidth, windowWidth).
