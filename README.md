@@ -30,14 +30,15 @@ This project is needed for front-end nano-degree web development.
 
 ####Part 1: Optimize PageSpeed Insights score for index.html
 
-With the following optimization, I get PageSpeed Insights speed of 95 mobile, 96 desktop: 
+With the following optimization, I get PageSpeed Insights speed of 95 mobile, 96 desktop:
+ 
 1. Add media="print" to print.css link tag
 2. Add asyn to google analytics.js script tag
 The followings are done with gulp
 3. Optimize jpg and png image with gulp-imagemin, resize and minimize views/pizzeria.jpg
 4. Replace render blocking style.css (google font css) with minified source code
 5. Minify html
-  ```
+
 
 ####Part 2: Optimize Frames per Second in pizza.html
 
@@ -49,7 +50,9 @@ The followings are done with gulp
 6. Change the pizza element style.left to style.transform with value translateX (line 535).
 7. Add style to movingPizza1 with values position="fixed", top="0px", left="0px", zIndex="-1" (line 561).
 
+
 ####Part 3: Computation Efficiency pizza.html
 
-I didn't change the logic of resizing pizza, with dev tools I found that all pizzas with same size, so I only made following changes, original file line 425-458, new file 428-465 :
+I didn't change the logic of resizing pizza, with dev tools I found that all pizzas with same size, so I only made following changes, original file line 425-458, new file 428-465:
+
 In changePizzaSizes function, move the calculation of the newwidth to the outside of the main loop, only use the width of the first pizza to determin dx. In accordingly, change the parameters of determinDx from (elem, size) to (size, oldWidth, windowWidth).
